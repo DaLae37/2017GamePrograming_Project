@@ -11,6 +11,8 @@ class Player
 public:
 	Player(bool isWhite);
 	~Player();
+	bool isGameOver;
 	Pieces *pc[16];
+	void Update();
 };
 

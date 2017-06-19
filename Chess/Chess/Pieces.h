@@ -16,4 +16,3 @@ public:
 	virtual void setPos(int x, int y) = 0;
 	virtual pair<int, int> getPos() = 0;
 };
-

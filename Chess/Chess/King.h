@@ -12,4 +12,3 @@ public:
 	void setPos(int x, int y);
 	pair<int, int> getPos();
 };
-
