@@ -35,6 +35,9 @@ Player::~Player()
 }
 
 void Player::Update() {
-	for (int i = 0; i < 16; i++)
+	for (int i = 0; i < 16; i++){
 		pc[i]->draw();
+		pc[i]->getPos() == 
+	}
+		
 }

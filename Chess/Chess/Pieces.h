@@ -9,6 +9,7 @@ private:
 	bool isWhite;
 protected:
 	gameTool *global;
+	bool isSelected;
 public:
 	Pieces(int x, int y, bool isWhite);
 	~Pieces();
