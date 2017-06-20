@@ -1,17 +1,20 @@
 #pragma once
-#include "King.h"
-#include "Queen.h"
-#include "Bishop.h"
-#include "Knight.h"
-#include "Look.h"
-#include "Pawn.h"
-#include "Pieces.h"
 class ChessBoard
 {
+private:
+	bool map[8][8];
+	bool whiteMap[8][8];
+	bool blackMap[8][8];
 public:
 	ChessBoard();
 	~ChessBoard();
-	Pieces *pieces[8][8];
-	void Update();
+	void PieceIn(int x, int y, bool isWhite);
+	void blackMakeFalse(int x, int y);
+	void whiteMakeFalse(int x, int y);
+	void MakeFalse(int x, int y);
+	bool isIn(int x, int y);
+	bool isOpponent(int x, int y, bool isWhite);
+	bool isWhiteIn(int x, int y);
+	bool isBlackIn(int x, int y);
 };
 

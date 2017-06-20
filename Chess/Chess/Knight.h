@@ -10,6 +10,9 @@ public:
 	~Knight();
 	void draw();
 	void setPos(int x, int y);
+	void move(ChessBoard *map);
+	void Input(ChessBoard *map);
+	bool canMove(ChessBoard *map, int x, int y);
 	pair<int, int> getPos();
 };
 

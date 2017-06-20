@@ -2,30 +2,9 @@
 
 ChessBoard::ChessBoard()
 {
-	for (int i = 0; i < 8; i++){
-		for (int j = 0; j < 8; j++){
-			pc[i] = new Pawn(i, 6, isWhite);
-			pc[8] = new Look(0, 7, isWhite);
-			pc[15] = new Look(7, 7, isWhite);
-			pc[9] = new Knight(1, 7, isWhite);
-			pc[14] = new Knight(6, 7, isWhite);
-			pc[10] = new Bishop(2, 7, isWhite);
-			pc[13] = new Bishop(5, 7, isWhite);
-			pc[11] = new Queen(3, 7, isWhite);
-			pc[12] = new King(4, 7, isWhite);
-		}
-	else {
-		for (int i = 0; i<8; i++)
-			pc[i] = new Pawn(i, 1, isWhite);
-		pc[8] = new Look(0, 0, isWhite);
-		pc[15] = new Look(7, 0, isWhite);
-		pc[9] = new Knight(1, 0, isWhite);
-		pc[14] = new Knight(6, 0, isWhite);
-		pc[10] = new Bishop(2, 0, isWhite);
-		pc[13] = new Bishop(5, 0, isWhite);
-		pc[11] = new Queen(4, 0, isWhite);
-		pc[12] = new King(3, 0, isWhite);
-	} //각각 플레이어의 말 초기화 부분
+	for (int i = 0; i < 8; i++) {
+		for (int j = 0; j < 8; j++) {
+			blackMap[i][j] = whiteMap[i][j] = map[i][j] = false;
 		}
 	}
 }
@@ -34,4 +13,37 @@ ChessBoard::~ChessBoard()
 {
 }
 
-void ChessBoard::Update(){
+void ChessBoard::PieceIn(int x, int y, bool isWhite) {
+	map[y][x] = true;
+	if (isWhite)
+		whiteMap[y][x] = true;
+	else
+		blackMap[y][x] = true;
+}
+void ChessBoard::blackMakeFalse(int x, int y) {
+	blackMap[y][x] = false;
+}
+void ChessBoard::whiteMakeFalse(int x, int y) {
+	whiteMap[y][x] = false;
+}
+void ChessBoard::MakeFalse(int x, int y) {
+	map[y][x] = false;
+}
+bool ChessBoard::isIn(int x, int y) {
+	return map[y][x];
+}
+
+bool ChessBoard::isWhiteIn(int x, int y) {
+	return whiteMap[y][x];
+}
+
+bool ChessBoard::isBlackIn(int x, int y) {
+	return blackMap[y][x];
+}
+
+bool ChessBoard::isOpponent(int x, int y, bool isWhite) {
+	if (isWhite)
+		return blackMap[y][x];
+	else
+		return whiteMap[y][x];
+}
