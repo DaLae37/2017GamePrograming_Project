@@ -85,7 +85,7 @@ void Player::InputCheck(ChessBoard *map) {
 	global->setPos(30, 20);
 	global->setColor(White, Black);
 	cin >> y >> x;
-	global->setPos(30, 20);
+	global->clearUnder();
 	cout << "        ";
 	for (int i = 0; i < 16; i++) { 
 		pair<int, int> now = pc[i]->getPos();
@@ -96,6 +96,6 @@ void Player::InputCheck(ChessBoard *map) {
 	}
 	global->setPos(30, 22); cout << "잘못된 입력!";
 	getch();
-	global->setPos(30, 22); cout << "                 ";
+	global->clearUnder();
 	InputCheck(map);
 }

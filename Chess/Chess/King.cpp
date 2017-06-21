@@ -22,23 +22,53 @@ void King::draw() {
 }
 
 bool King::canMove(ChessBoard *map, int x, int y) {
-	int white = 1;
-	if (isWhite)
-		white = -1;
-	if (!map->isIn(pos.first, pos.second + white))
+	if (!map->isIn(pos.first + 1, pos.second + 1) && pos.first + 1 == x && pos.second +1 == y)
 		return true;
-	if (map->isOpponent(pos.first + white, pos.second + white, isWhite))
+	if (map->isOpponent(pos.first + 1, pos.second + 1, isWhite) && pos.first + 1 == x && pos.second + 1 == y)
 		return true;
-	if (map->isOpponent(pos.first + (-white), pos.second + white, isWhite))
+	//+1+1
+	if (!map->isIn(pos.first + 1, pos.second) && pos.first + 1 == x && pos.second== y)
 		return true;
+	if (map->isOpponent(pos.first + 1, pos.second, isWhite) && pos.first + 1 == x && pos.second== y)
+		return true;
+	//+1+0
+	if (!map->isIn(pos.first + 1, pos.second - 1) && pos.first + 1 == x && pos.second - 1 == y)
+		return true;
+	if (map->isOpponent(pos.first + 1, pos.second - 1, isWhite) && pos.first + 1 == x && pos.second - 1 == y)
+		return true;
+	//+1-1
+	
+	if (!map->isIn(pos.first, pos.second + 1) && pos.first == x && pos.second + 1 == y)
+		return true;
+	if (map->isOpponent(pos.first, pos.second + 1, isWhite) && pos.first== x && pos.second + 1 == y)
+		return true;
+	//+0+1
+	if (!map->isIn(pos.first, pos.second - 1) && pos.first== x && pos.second - 1 == y)
+		return true;
+	if (map->isOpponent(pos.first, pos.second - 1, isWhite) && pos.first== x && pos.second - 1 == y)
+		return true;
+	//+0-1
+
+	if (!map->isIn(pos.first - 1, pos.second + 1) && pos.first - 1 == x && pos.second + 1 == y)
+		return true;
+	if (map->isOpponent(pos.first - 1, pos.second + 1, isWhite) && pos.first - 1 == x && pos.second + 1 == y)
+		return true;
+	//-1+1
+	if (!map->isIn(pos.first -1, pos.second) && pos.first- 1 == x && pos.second == y)
+		return true;
+	if (map->isOpponent(pos.first - 1, pos.second, isWhite) && pos.first- 1 == x && pos.second == y)
+		return true;
+	//-1+0
+	if (!map->isIn(pos.first -1, pos.second - 1) && pos.first- 1 == x && pos.second - 1 == y)
+		return true;
+	if (map->isOpponent(pos.first - 1, pos.second - 1, isWhite) && pos.first- 1 == x && pos.second - 1 == y)
+		return true;
+	//-1-1
 	return false;
 }
 
 void King::move(ChessBoard *map) {
 	int x, y;
-	int white = 1;
-	if (isWhite)
-		white = -1;
 	for (int i = 0; i < 8; i++) {
 		for (int j = 0; j < 8; j++) {
 			if (canMove(map, j, i)) {
@@ -55,20 +85,22 @@ void King::Input(ChessBoard *map) {
 	global->setPos(30, 20);
 	global->setColor(White, Black);
 	cin >> y >> x;
-	global->setPos(30, 20);
-	cout << "        ";
+	global->clearUnder();
 	if (canMove(map, x, y)) {
-		setPos(x, y);
 		isSelected = false;
 		if (isWhite) {
 			map->blackMakeFalse(x, y);
 			map->whiteMakeFalse(pos.first, pos.second);
+			map->whiteKingMove(pos.first, pos.second, x, y);
 		}
 		else {
 			map->whiteMakeFalse(x, y);
 			map->blackMakeFalse(pos.first, pos.second);
+			map->blackKingMove(pos.first, pos.second, x, y);
 		}
+		map->MakeFalse(pos.first, pos.second);
 		map->PieceIn(x, y, isWhite);
+		setPos(x, y);
 	}
 	if (isSelected)
 		Input(map);

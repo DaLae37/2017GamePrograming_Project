@@ -37,7 +37,13 @@ bool Pawn::canMove(ChessBoard *map, int x, int y) {
 		for (int i = 1; i <= 2; i++) {
 			if (!map->isIn(pos.first, pos.second + (white * i)) && pos.first == x && pos.second + (white * i) == y)
 				return true;
+			else if (map->isIn(pos.first, pos.second + (white * i)))
+				break;
 		}
+		if (map->isOpponent(pos.first + white, pos.second + white, isWhite) && pos.first == x && pos.second + white == y)
+			return true;
+		if (map->isOpponent(pos.first + (-white), pos.second + white, isWhite) && pos.first + (-white) == x && pos.second + white == y)
+			return true;
 	}
 	else {
 		if (!map->isIn(pos.first, pos.second + white) && pos.first == x && pos.second + white == y)
@@ -68,8 +74,7 @@ void Pawn::Input(ChessBoard *map) {
 	global->setPos(30, 20);
 	global->setColor(White, Black);
 	cin >> y >> x;
-	global->setPos(30, 20);
-	cout << "        ";
+	global->clearUnder();
 	if (canMove(map, x, y)) {
 		isSelected = false;
 		if(!isOnceMoved)

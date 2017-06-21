@@ -28,5 +28,7 @@ public:
 	void setPos(int x, int y);
 	void setColor(int color, int bgcolor);
 	void drawMap();
+	void exdrawMap();
+	void clearUnder();
 };
 

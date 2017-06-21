@@ -79,22 +79,20 @@ void Bishop::Input(ChessBoard *map) {
 	global->setPos(30, 20);
 	global->setColor(White, Black);
 	cin >> y >> x;
-	global->setPos(30, 20);
-	cout << "        ";
+	global->clearUnder();
 	if (canMove(map, x, y)) {
-		setPos(x, y);
 		isSelected = false;
 		if (isWhite) {
 			map->blackMakeFalse(x, y);
 			map->whiteMakeFalse(pos.first, pos.second);
-			map->MakeFalse(pos.first, pos.second);
 		}
 		else {
 			map->whiteMakeFalse(x, y);
 			map->blackMakeFalse(pos.first, pos.second);
-			map->MakeFalse(pos.first, pos.second);
 		}
+		map->MakeFalse(pos.first, pos.second);
 		map->PieceIn(x, y, isWhite);
+		setPos(x, y);
 	}
 	if (isSelected)
 		Input(map);

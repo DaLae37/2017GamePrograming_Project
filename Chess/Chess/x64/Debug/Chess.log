@@ -1,12 +1,13 @@
-﻿빌드 시작: 2017-06-20 오후 12:08:55
-     1>2 노드의 "D:\20421\2017GamePrograming_Project\Chess\Chess\Chess.vcxproj" 프로젝트(Build 대상)입니다.
+﻿빌드 시작: 2017-06-21 오후 12:21:43
+     1>2 노드의 "D:\20421이한수\2017GamePrograming_Project\Chess\Chess\Chess.vcxproj" 프로젝트(Build 대상)입니다.
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /Od /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt main.cpp
          main.cpp
-     1>main.cpp(17): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _getch. See online help for details.
+     1>main.cpp(29): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _getch. See online help for details.
                  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\conio.h(131) : 'getch' 선언을 참조하십시오.
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"D:\20421\2017GamePrograming_Project\Chess\x64\Debug\Chess.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\20421\2017GamePrograming_Project\Chess\x64\Debug\Chess.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\20421\2017GamePrograming_Project\Chess\x64\Debug\Chess.lib" /MACHINE:X64 x64\Debug\Bishop.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"D:\20421이한수\2017GamePrograming_Project\Chess\x64\Debug\Chess.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\20421이한수\2017GamePrograming_Project\Chess\x64\Debug\Chess.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\20421이한수\2017GamePrograming_Project\Chess\x64\Debug\Chess.lib" /MACHINE:X64 x64\Debug\Bishop.obj
+         x64\Debug\ChessBoard.obj
          x64\Debug\gameTool.obj
          x64\Debug\King.obj
          x64\Debug\Knight.obj
@@ -16,9 +17,9 @@
          x64\Debug\Pieces.obj
          x64\Debug\Player.obj
          x64\Debug\Queen.obj
-         Chess.vcxproj -> D:\20421\2017GamePrograming_Project\Chess\x64\Debug\Chess.exe
-     1>"D:\20421\2017GamePrograming_Project\Chess\Chess\Chess.vcxproj" 프로젝트를 빌드했습니다(Build 대상).
+         Chess.vcxproj -> D:\20421이한수\2017GamePrograming_Project\Chess\x64\Debug\Chess.exe
+     1>"D:\20421이한수\2017GamePrograming_Project\Chess\Chess\Chess.vcxproj" 프로젝트를 빌드했습니다(Build 대상).
 
 빌드했습니다.
 
-경과 시간: 00:00:00.80
+경과 시간: 00:00:00.90

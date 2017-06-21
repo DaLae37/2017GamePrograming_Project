@@ -22,15 +22,43 @@ void Look::draw(){
 }
 
 bool Look::canMove(ChessBoard *map, int x, int y) {
-	int white = 1;
-	if (isWhite)
-		white = -1;
-	if (!map->isIn(pos.first, pos.second + white))
-		return true;
-	if (map->isOpponent(pos.first + white, pos.second + white, isWhite))
-		return true;
-	if (map->isOpponent(pos.first + (-white), pos.second + white, isWhite))
-		return true;
+	bool one, two, three, four;
+	one = two = three = four = false;
+	for (int i = 1; i <= 7; i++) {
+		if (pos.second < y && !one) {
+			if (!map->isIn(pos.first, pos.second + i) && pos.first == x && pos.second + i == y)
+				return true;
+			else if (map->isIn(pos.first, pos.second + i))
+				one = true;
+			if (map->isOpponent(pos.first, pos.second + i, isWhite) && pos.first == x && pos.second + i == y)
+				return true;
+		}
+		if (pos.second > y && !two) {
+			if (!map->isIn(pos.first, pos.second - i) && pos.first == x && pos.second - i == y)
+				return true;
+			else if (map->isIn(pos.first, pos.second - i))
+				two = true;
+			if (map->isOpponent(pos.first, pos.second - i, isWhite) && pos.first == x && pos.second - i == y)
+				return true;
+		}
+		if (pos.first > x && !three) {
+			if (!map->isIn(pos.first - i, pos.second) && pos.first - i == x && pos.second == y)
+				return true;
+			else if (map->isIn(pos.first - i, pos.second))
+				three = true;
+			if (map->isOpponent(pos.first - i, pos.second, isWhite) && pos.first - i == x && pos.second == y)
+				return true;
+		}
+		if (pos.first < x && !four) {
+			if (!map->isIn(pos.first + i, pos.second) && pos.first + i == x && pos.second == y)
+				return true;
+			else if (map->isIn(pos.first + i, pos.second))
+				four = true;
+			if (map->isOpponent(pos.first + i, pos.second, isWhite) && pos.first + i == x && pos.second== y)
+				return true;
+		}
+	}
+	return false;
 	return false;
 }
 
@@ -55,10 +83,8 @@ void Look::Input(ChessBoard *map) {
 	global->setPos(30, 20);
 	global->setColor(White, Black);
 	cin >> y >> x;
-	global->setPos(30, 20);
-	cout << "        ";
+	global->clearUnder();
 	if (canMove(map, x, y)) {
-		setPos(x, y);
 		isSelected = false;
 		if (isWhite) {
 			map->blackMakeFalse(x, y);
@@ -68,7 +94,9 @@ void Look::Input(ChessBoard *map) {
 			map->whiteMakeFalse(x, y);
 			map->blackMakeFalse(pos.first, pos.second);
 		}
-		map->PieceIn(x, y, isWhite);
+		map->MakeFalse(pos.first, pos.second);
+		map->PieceIn(x, y, isWhite);	
+		setPos(x, y);
 	}
 	if (isSelected)
 		Input(map);

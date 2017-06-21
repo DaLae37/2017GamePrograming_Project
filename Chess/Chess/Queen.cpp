@@ -22,18 +22,78 @@ void Queen::draw(){
 }
 
 bool Queen::canMove(ChessBoard *map, int x, int y) {
-	int white = 1;
-	if (isWhite)
-		white = -1;
-	if (!map->isIn(pos.first, pos.second + white))
-		return true;
-	if (map->isOpponent(pos.first + white, pos.second + white, isWhite))
-		return true;
-	if (map->isOpponent(pos.first + (-white), pos.second + white, isWhite))
-		return true;
+	bool one, two, three, four, five, six, seven, eight;
+	one = two = three = four = five = six = seven = eight = false;
+	for (int i = 1; i <= 7; i++) {
+		if (pos.first < x && pos.second < y && !one) {
+			if (!map->isIn(pos.first + i, pos.second + i) && pos.first + i == x && pos.second + i == y)
+				return true;
+			else if (map->isIn(pos.first + i, pos.second + i))
+				one = true;
+			if (map->isOpponent(pos.first + i, pos.second + i, isWhite) && pos.first + i == x && pos.second + i == y)
+				return true;
+		}
+		if (pos.first < x && pos.second > y && !two) {
+			if (!map->isIn(pos.first + i, pos.second - i) && pos.first + i == x && pos.second - i == y)
+				return true;
+			else if (map->isIn(pos.first + i, pos.second - i))
+				two = true;
+			if (map->isOpponent(pos.first + i, pos.second - i, isWhite) && pos.first + i == x && pos.second - i == y)
+				return true;
+		}
+		if (pos.first > x && pos.second < y && !three) {
+			if (!map->isIn(pos.first - i, pos.second + i) && pos.first - i == x && pos.second + i == y)
+				return true;
+			else if (map->isIn(pos.first - i, pos.second + i))
+				three = true;
+			if (map->isOpponent(pos.first - i, pos.second + i, isWhite) && pos.first - i == x && pos.second + i == y)
+				return true;
+		}
+		if (pos.first > x && pos.second > y && !four) {
+			if (!map->isIn(pos.first - i, pos.second - i) && pos.first - i == x && pos.second - i == y)
+				return true;
+			else if (map->isIn(pos.first - i, pos.second - i))
+				four = true;
+			if (map->isOpponent(pos.first - i, pos.second - i, isWhite) && pos.first - i == x && pos.second - i == y)
+				return true;
+		}
+		//bishop
+		if (pos.second < y && !five) {
+			if (!map->isIn(pos.first, pos.second + i) && pos.first == x && pos.second + i == y)
+				return true;
+			else if (map->isIn(pos.first, pos.second + i))
+				five = true;
+			if (map->isOpponent(pos.first, pos.second + i, isWhite) && pos.first == x && pos.second + i == y)
+				return true;
+		}
+		if (pos.second > y && !six) {
+			if (!map->isIn(pos.first, pos.second - i) && pos.first == x && pos.second - i == y)
+				return true;
+			else if (map->isIn(pos.first, pos.second - i))
+				six = true;
+			if (map->isOpponent(pos.first, pos.second - i, isWhite) && pos.first == x && pos.second - i == y)
+				return true;
+		}
+		if (pos.first > x && !seven) {
+			if (!map->isIn(pos.first - i, pos.second) && pos.first - i == x && pos.second == y)
+				return true;
+			else if (map->isIn(pos.first - i, pos.second))
+				seven = true;
+			if (map->isOpponent(pos.first - i, pos.second, isWhite) && pos.first - i == x && pos.second == y)
+				return true;
+		}
+		if (pos.first < x && !eight) {
+			if (!map->isIn(pos.first + i, pos.second) && pos.first + i == x && pos.second == y)
+				return true;
+			else if (map->isIn(pos.first + i, pos.second))
+				eight = true;
+			if (map->isOpponent(pos.first + i, pos.second, isWhite) && pos.first + i == x && pos.second == y)
+				return true;
+			//look
+		}
+	}
 	return false;
 }
-
 void Queen::move(ChessBoard *map) {
 	int x, y;
 	int white = 1;
@@ -55,10 +115,8 @@ void Queen::Input(ChessBoard *map) {
 	global->setPos(30, 20);
 	global->setColor(White, Black);
 	cin >> y >> x;
-	global->setPos(30, 20);
-	cout << "        ";
+	global->clearUnder();
 	if (canMove(map, x, y)) {
-		setPos(x, y);
 		isSelected = false;
 		if (isWhite) {
 			map->blackMakeFalse(x, y);
@@ -69,6 +127,8 @@ void Queen::Input(ChessBoard *map) {
 			map->blackMakeFalse(pos.first, pos.second);
 		}
 		map->PieceIn(x, y, isWhite);
+		map->MakeFalse(pos.first, pos.second);
+		setPos(x, y);
 	}
 	if (isSelected)
 		Input(map);

@@ -4,13 +4,40 @@ ChessBoard::ChessBoard()
 {
 	for (int i = 0; i < 8; i++) {
 		for (int j = 0; j < 8; j++) {
-			blackMap[i][j] = whiteMap[i][j] = map[i][j] = false;
+			blackKingMap[i][j] = whiteKingMap[i][j] = blackMap[i][j] = whiteMap[i][j] = map[i][j] = false;
 		}
 	}
 }
 
 ChessBoard::~ChessBoard()
 {
+}
+void ChessBoard::whiteKingMove(int now_x, int now_y, int after_x, int after_y){
+	blackKingMap[now_y][now_x] = false;
+	blackKingMap[after_y][after_x] = true;
+}
+void ChessBoard::blackKingMove(int now_x, int now_y, int after_x, int after_y){
+	whiteKingMap[now_y][now_x] = false;
+	whiteKingMap[after_y][after_x] = true;
+}
+bool ChessBoard::blackCheck(){
+	for (int i = 0; i < 8; i++){
+		for (int j = 0; j < 8; j++){
+			if (blackKingMap[i][j]  && blackKingMap[i][j] == blackMap[i][j])
+				return false;
+		}
+	}
+	return true;
+}
+
+bool ChessBoard::whiteCheck(){
+	for (int i = 0; i < 8; i++){
+		for (int j = 0; j < 8; j++){
+			if (whiteKingMap[i][j] && whiteKingMap[i][j] == whiteMap[i][j])
+				return false;
+		}
+	}
+	return true;
 }
 
 void ChessBoard::PieceIn(int x, int y, bool isWhite) {

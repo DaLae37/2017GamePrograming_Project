@@ -22,15 +22,35 @@ void Knight::draw(){
 }
 
 bool Knight::canMove(ChessBoard *map, int x, int y) {
-	int white = 1;
-	if (isWhite)
-		white = -1;
-	if (!map->isIn(pos.first, pos.second + white))
-		return true;
-	if (map->isOpponent(pos.first + white, pos.second + white, isWhite))
-		return true;
-	if (map->isOpponent(pos.first + (-white), pos.second + white, isWhite))
-		return true;
+	int tmp1 = 1, tmp2 = 2;
+	for (int i = 1; i <= 2; i++){
+		if (!map->isIn(pos.first + tmp1, pos.second + tmp2) && x == pos.first + tmp1 && y == pos.second + tmp2)
+			return true;
+		if (map->isOpponent(pos.first + tmp1, pos.second + tmp2, isWhite) && x == pos.first + tmp1 && y == pos.second + tmp2)
+			return true;
+
+		if (!map->isIn(pos.first - tmp1, pos.second + tmp2) && x == pos.first - tmp1 && y == pos.second + tmp2)
+			return true;
+		if (map->isOpponent(pos.first - tmp1, pos.second + tmp2, isWhite) && x == pos.first - tmp1 && y == pos.second + tmp2)
+			return true;
+
+		if (!map->isIn(pos.first + tmp1, pos.second - tmp2) && x == pos.first + tmp1 && y == pos.second - tmp2)
+			return true;
+		if (map->isOpponent(pos.first + tmp1, pos.second - tmp2, isWhite) && x == pos.first + tmp1 && y == pos.second - tmp2)
+			return true;
+
+		if (!map->isIn(pos.first - tmp1, pos.second - tmp2) && x == pos.first - tmp1 && y == pos.second - tmp2)
+			return true;
+		if (map->isOpponent(pos.first - tmp1, pos.second - tmp2, isWhite) && x == pos.first - tmp1 && y == pos.second - tmp2)
+			return true;
+		int temp = tmp1;
+		tmp1 = tmp2;
+		tmp2 = temp;
+	}
+	
+	//case 1
+	
+
 	return false;
 }
 
@@ -55,10 +75,8 @@ void Knight::Input(ChessBoard *map) {
 	global->setPos(30, 20);
 	global->setColor(White, Black);
 	cin >> y >> x;
-	global->setPos(30, 20);
-	cout << "        ";
+	global->clearUnder();
 	if (canMove(map, x, y)) {
-		setPos(x, y);
 		isSelected = false;
 		if (isWhite) {
 			map->blackMakeFalse(x, y);
@@ -68,7 +86,9 @@ void Knight::Input(ChessBoard *map) {
 			map->whiteMakeFalse(x, y);
 			map->blackMakeFalse(pos.first, pos.second);
 		}
+		map->MakeFalse(pos.first, pos.second);
 		map->PieceIn(x, y, isWhite);
+		setPos(x, y);
 	}
 	if (isSelected)
 		Input(map);
