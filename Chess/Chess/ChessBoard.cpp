@@ -7,18 +7,20 @@ ChessBoard::ChessBoard()
 			blackKingMap[i][j] = whiteKingMap[i][j] = blackMap[i][j] = whiteMap[i][j] = map[i][j] = false;
 		}
 	}
+	whiteKingMap[7][3] = true;
+	blackKingMap[0][3] = true;
 }
 
 ChessBoard::~ChessBoard()
 {
 }
 void ChessBoard::whiteKingMove(int now_x, int now_y, int after_x, int after_y){
-	blackKingMap[now_y][now_x] = false;
-	blackKingMap[after_y][after_x] = true;
-}
-void ChessBoard::blackKingMove(int now_x, int now_y, int after_x, int after_y){
 	whiteKingMap[now_y][now_x] = false;
 	whiteKingMap[after_y][after_x] = true;
+}
+void ChessBoard::blackKingMove(int now_x, int now_y, int after_x, int after_y){
+	blackKingMap[now_y][now_x] = false;
+	blackKingMap[after_y][after_x] = true;
 }
 bool ChessBoard::blackCheck(){
 	for (int i = 0; i < 8; i++){

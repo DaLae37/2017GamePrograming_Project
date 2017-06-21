@@ -14,8 +14,8 @@ Player::Player(bool isWhite, ChessBoard *gameMap)
 		pc[14] = new Knight(6, 7, isWhite);
 		pc[10] = new Bishop(2, 7, isWhite);
 		pc[13] = new Bishop(5, 7, isWhite);
-		pc[11] = new Queen(3, 7, isWhite);
-		pc[12] = new King(4, 7, isWhite);
+		pc[11] = new Queen(4, 7, isWhite);
+		pc[12] = new King(3, 7, isWhite);
 	}
 	else {
 		for (int i = 0; i<8; i++)

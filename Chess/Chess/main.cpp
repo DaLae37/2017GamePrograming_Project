@@ -15,10 +15,10 @@ int main() {
 	whitePlayer->draw(gameMap);
 	blackPlayer->draw(gameMap);
 
-	while (gameMap->blackCheck()) {
+	while (!gameMap->whiteCheck()) {
 		whitePlayer->Update(gameMap);
 		blackPlayer->draw(gameMap);
-		if (!gameMap->whiteCheck())
+		if (gameMap->blackCheck())
 			break;
 		blackPlayer->Update(gameMap);
 		whitePlayer->draw(gameMap);

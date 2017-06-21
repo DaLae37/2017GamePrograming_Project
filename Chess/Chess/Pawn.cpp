@@ -40,17 +40,17 @@ bool Pawn::canMove(ChessBoard *map, int x, int y) {
 			else if (map->isIn(pos.first, pos.second + (white * i)))
 				break;
 		}
-		if (map->isOpponent(pos.first + white, pos.second + white, isWhite) && pos.first == x && pos.second + white == y)
+		if (map->isOpponent(pos.first + white, pos.second  + white, isWhite) && pos.first + white == x && pos.second + white == y)
 			return true;
-		if (map->isOpponent(pos.first + (-white), pos.second + white, isWhite) && pos.first + (-white) == x && pos.second + white == y)
+		if (map->isOpponent(pos.first - white, pos.second + white, isWhite) && pos.first - white == x && pos.second + white == y)
 			return true;
 	}
 	else {
 		if (!map->isIn(pos.first, pos.second + white) && pos.first == x && pos.second + white == y)
 			return true;
-		if (map->isOpponent(pos.first + white, pos.second + white, isWhite) && pos.first == x && pos.second + white == y)
+		if (map->isOpponent(pos.first + white, pos.second + white, isWhite) && pos.first + white == x && pos.second + white == y)
 			return true;
-		if (map->isOpponent(pos.first + (-white), pos.second + white, isWhite) && pos.first + (-white) == x && pos.second + white== y)
+		if (map->isOpponent(pos.first - white, pos.second + white, isWhite) && pos.first - white == x && pos.second + white == y)
 			return true;
 	}
 	return false;
