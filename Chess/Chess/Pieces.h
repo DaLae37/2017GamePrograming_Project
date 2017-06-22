@@ -10,8 +10,10 @@ private:
 	bool isWhite;
 protected:
 	gameTool *global;
+	Mouse *mouse;
 public:
 	bool isSelected;
+	bool isSelectedFinish;
 	Pieces(int x, int y, bool isWhite);
 	~Pieces();
 	virtual void draw() = 0;

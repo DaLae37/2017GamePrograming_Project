@@ -148,6 +148,7 @@
     <ClInclude Include="King.h" />
     <ClInclude Include="Knight.h" />
     <ClInclude Include="Look.h" />
+    <ClInclude Include="Mouse.h" />
     <ClInclude Include="Pawn.h" />
     <ClInclude Include="Pieces.h" />
     <ClInclude Include="Player.h" />
@@ -161,6 +162,7 @@
     <ClCompile Include="Knight.cpp" />
     <ClCompile Include="Look.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="Pieces.cpp" />
     <ClCompile Include="Player.cpp" />

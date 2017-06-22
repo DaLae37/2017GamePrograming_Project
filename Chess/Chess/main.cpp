@@ -2,25 +2,40 @@
 #include "Player.h"
 #include "ChessBoard.h"
 #include <conio.h>
-int main() {
-	system("title Ã¼½º");
-	system("mode con:cols=120 lines=32");
-	gameTool *global = new gameTool();
+gameTool *global = new gameTool();
+void mainMenu(){
+	cout << "                                                 _/                      ";
+	cout << "    _/_/_/  _/_/_/  _/_/      _/_/_/  _/_/_/_/      _/_/_/      _/_/_/   ";
+	cout << " _/    _/  _/    _/    _/  _/    _/      _/    _/  _/    _/  _/    _/    ";
+	cout << "_/    _/  _/    _/    _/  _/    _/    _/      _/  _/    _/  _/    _/     ";
+	cout << " _/_/_/  _/    _/    _/    _/_/_/  _/_/_/_/  _/  _/    _/    _/_/_/      ";
+	cout << "             _/                            _/                   _/       ";
+	cout << "    _/_/_/  _/_/_/      _/_/      _/_/_/  _/  _/      _/_/_//_/          ";
+	cout << " _/        _/    _/  _/_/_/_/  _/        _/_/      _/_/                  ";
+	cout << "_/        _/    _/  _/        _/        _/  _/        _/_/               ";
+	cout << " _/_/_/  _/    _/    _/_/_/    _/_/_/  _/    _/  _/_/_/                  ";
+	cout << "                                        input any key                  ";
+	getch();
+}
+int main() {	
+	mainMenu();
+
 	ChessBoard *gameMap = new ChessBoard();
 	Player *whitePlayer = new Player(true, gameMap);
 	Player *blackPlayer = new Player(false, gameMap);
 
-	global->drawMap();
 	global->exdrawMap();
+	global->drawMap();
+
 	whitePlayer->draw(gameMap);
 	blackPlayer->draw(gameMap);
 
 	while (!gameMap->whiteCheck()) {
-		whitePlayer->Update(gameMap);
+		whitePlayer->Update(gameMap,blackPlayer);
 		blackPlayer->draw(gameMap);
 		if (gameMap->blackCheck())
 			break;
-		blackPlayer->Update(gameMap);
+		blackPlayer->Update(gameMap,whitePlayer);
 		whitePlayer->draw(gameMap);
 	}
 	global->clearUnder();

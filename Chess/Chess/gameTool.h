@@ -1,6 +1,7 @@
 #pragma once
 #include <Windows.h>
 #include <iostream>
+#include "Mouse.h"
 #define MAP_SIZE 8
 using namespace std;
 enum

@@ -3,6 +3,7 @@
 Pawn::Pawn(int x, int y, bool isWhite) : Pieces(x, y, isWhite)
 {
 	isOnceMoved = false;
+	isSelectedFinish = true;
 	this->isWhite = isWhite;
 	pos = make_pair(x, y);
 }
@@ -12,7 +13,7 @@ Pawn::~Pawn()
 }
 
 void Pawn::draw() {
-	global->setPos((pos.first) * 6 + 2, (pos.second) * 2 + 1);
+	global->setPos((pos.first) * 6 + 32, (pos.second) * 2 + 8);
 	if (isWhite)
 		global->setColor(White, Gray);
 	else
@@ -61,7 +62,7 @@ void Pawn::move(ChessBoard *map) {
 	for (int i = 0; i < 8; i++) {
 		for (int j = 0; j < 8; j++) {
 			if (canMove(map, j, i)) {
-				global->setPos((j) * 6 + 2, (i) * 2 + 1);
+				global->setPos((j) * 6 + 32, (i) * 2 + 8);
 				cout << "####";
 			}
 		}
@@ -71,28 +72,49 @@ void Pawn::move(ChessBoard *map) {
 
 void Pawn::Input(ChessBoard *map) {
 	int x, y;
-	global->setPos(30, 20);
-	global->setColor(White, Black);
-	cin >> y >> x;
-	global->clearUnder();
-	if (canMove(map, x, y)) {
-		isSelected = false;
-		if(!isOnceMoved)
-			isOnceMoved = true;
-		if (isWhite) {
-			map->blackMakeFalse(x, y);
-			map->whiteMakeFalse(pos.first, pos.second);
+	INPUT_RECORD rec;
+	DWORD        dwNOER;
+	SetConsoleMode(GetStdHandle(STD_OUTPUT_HANDLE), ENABLE_PROCESSED_INPUT | ENABLE_MOUSE_INPUT);
+	while (1){
+		ReadConsoleInput(GetStdHandle(STD_INPUT_HANDLE), &rec, 1, &dwNOER); // 콘솔창 입력을 받아들임.
+		if (rec.EventType == MOUSE_EVENT) // 마우스 이벤트일 경우
+		{
+			if (rec.Event.MouseEvent.dwButtonState & FROM_LEFT_1ST_BUTTON_PRESSED) // 좌측 버튼이 클릭되었을 경우
+			{
+				int mouse_x = rec.Event.MouseEvent.dwMousePosition.X; // X값 받아옴
+				int mouse_y = rec.Event.MouseEvent.dwMousePosition.Y; // Y값 받아옴
+				COORD Coor = { 0, 0 };
+				DWORD dw;
+				x = (mouse_x-32)/8;
+				y = (mouse_y-8)/2;
+				
+				if (canMove(map, x, y)) {
+					isSelected = false;
+					if (!isOnceMoved)
+						isOnceMoved = true;
+					if (isWhite) {
+						map->blackMakeFalse(x, y);
+						map->whiteMakeFalse(pos.first, pos.second);
+					}
+					else {
+						map->whiteMakeFalse(x, y);
+						map->blackMakeFalse(pos.first, pos.second);
+					}
+					map->MakeFalse(pos.first, pos.second);
+					map->PieceIn(x, y, isWhite);
+					setPos(x, y);
+				}
+				if (isSelected)
+					continue;
+				break;
+			}
+			else if (rec.Event.MouseEvent.dwButtonState & RIGHTMOST_BUTTON_PRESSED){
+				isSelected = false;
+				isSelectedFinish = false;
+				return;
+			}
 		}
-		else {
-			map->whiteMakeFalse(x, y);
-			map->blackMakeFalse(pos.first, pos.second);
-		}
-		map->MakeFalse(pos.first, pos.second);
-		map->PieceIn(x, y, isWhite);
-		setPos(x, y);
 	}
-	if (isSelected)
-		Input(map);
 }
 
 pair<int, int> Pawn::getPos() {

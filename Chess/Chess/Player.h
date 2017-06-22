@@ -8,6 +8,7 @@
 #include "Pieces.h"
 #include "ChessBoard.h"
 #include <conio.h>
+#include <Windows.h>
 class Player
 {
 public:
@@ -19,7 +20,8 @@ public:
 	int x, y;
 	Pieces *pc[16];
 	gameTool *global;
-	void Update(ChessBoard *gameMap);
+	Mouse *m;
+	void Update(ChessBoard *gameMap, Player *opponenet);
 	void InputCheck(ChessBoard *map);
 	void draw(ChessBoard *gameMap);
 };

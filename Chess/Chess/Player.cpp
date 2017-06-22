@@ -2,6 +2,7 @@
 
 Player::Player(bool isWhite, ChessBoard *gameMap)
 {
+	m = new Mouse();
 	gameTool *global = new gameTool();
 	isGameOver = false;
 	this->isWhite = isWhite;
@@ -55,11 +56,8 @@ void Player::draw(ChessBoard *gameMap) {
 	}
 }
 
-void Player::Update(ChessBoard *gameMap) {
-	if (pc[12] == NULL) {
-		isGameOver = true;
-		return;
-	}
+void Player::Update(ChessBoard *gameMap, Player *opponenet) {
+
 	InputCheck(gameMap);
 	draw(gameMap);
 	int tmp;
@@ -69,8 +67,14 @@ void Player::Update(ChessBoard *gameMap) {
 			pc[i]->move(gameMap);
 		}
 	}
-	global->drawMap();
-	draw(gameMap);
+	if (!pc[tmp]->isSelectedFinish){
+		global->drawMap();
+		draw(gameMap);
+		opponenet->draw(gameMap);
+		Update(gameMap, opponenet);
+	}
+		
+
 }
 bool Player::CanMoveCheck(ChessBoard *map, int x) {
 	for (int i = 0; i < 8; i++) {
@@ -82,20 +86,28 @@ bool Player::CanMoveCheck(ChessBoard *map, int x) {
 	return false;
 }
 void Player::InputCheck(ChessBoard *map) {
-	global->setPos(30, 20);
-	global->setColor(White, Black);
-	cin >> y >> x;
-	global->clearUnder();
-	cout << "        ";
-	for (int i = 0; i < 16; i++) { 
-		pair<int, int> now = pc[i]->getPos();
-		if (now.first == x && now.second == y && CanMoveCheck(map, i)) {
-			pc[i]->isSelected = true;
-			return;
+	INPUT_RECORD rec;
+	DWORD        dwNOER;
+	SetConsoleMode(GetStdHandle(STD_OUTPUT_HANDLE), ENABLE_PROCESSED_INPUT | ENABLE_MOUSE_INPUT);
+	while (1){
+		ReadConsoleInput(GetStdHandle(STD_INPUT_HANDLE), &rec, 1, &dwNOER); // 콘솔창 입력을 받아들임.
+		if (rec.EventType == MOUSE_EVENT) // 마우스 이벤트일 경우
+		{
+			if (rec.Event.MouseEvent.dwButtonState & FROM_LEFT_1ST_BUTTON_PRESSED) // 좌측 버튼이 클릭되었을 경우
+			{
+				int mouse_x = rec.Event.MouseEvent.dwMousePosition.X; // X값 받아옴
+				int mouse_y = rec.Event.MouseEvent.dwMousePosition.Y; // Y값 받아옴
+				COORD Coor = { 0, 0 };
+				DWORD dw;
+				global->setColor(White, Black); global->setPos(0, 0); cout << mouse_x << " " << mouse_y;
+				for (int i = 0; i < 16; i++) {
+					pair<int, int> now = pc[i]->getPos();
+					if (now.first == (mouse_x - 32) / 8 && now.second == (mouse_y - 8) / 2 && CanMoveCheck(map, i)) {
+						pc[i]->isSelected = true;
+						return;
+					}
+				}
+			}
 		}
 	}
-	global->setPos(30, 22); cout << "잘못된 입력!";
-	getch();
-	global->clearUnder();
-	InputCheck(map);
 }

@@ -11,7 +11,7 @@ Knight::~Knight()
 }
 
 void Knight::draw(){
-	global->setPos((pos.first) * 6 + 2, (pos.second) * 2 + 1);
+	global->setPos((pos.first) * 6 + 32, (pos.second) * 2 + 8);
 	if (isWhite)
 		global->setColor(White, Gray);
 	else
@@ -62,7 +62,7 @@ void Knight::move(ChessBoard *map) {
 	for (int i = 0; i < 8; i++) {
 		for (int j = 0; j < 8; j++) {
 			if (canMove(map, j, i)) {
-				global->setPos((j) * 6 + 2, (i) * 2 + 1);
+				global->setPos((j) * 6 + 32, (i) * 2 + 8);
 				cout << "####";
 			}
 		}
