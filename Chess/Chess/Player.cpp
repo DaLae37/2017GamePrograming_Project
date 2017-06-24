@@ -109,7 +109,7 @@ void Player::InputCheck(ChessBoard *map) {
 				int mouse_y = rec.Event.MouseEvent.dwMousePosition.Y; // Y°ª ¹Þ¾Æ¿È
 				COORD Coor = { 0, 0 };
 				DWORD dw;
-				global->setPos(10, 0); cout << mouse_x << " " << mouse_y;
+				
 				for (int i = 0; i < 16; i++) {
 					if (pc[i] == NULL)
 						continue;
