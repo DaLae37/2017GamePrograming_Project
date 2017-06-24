@@ -1,5 +1,5 @@
-﻿  Pawn.cpp
-d:\coding\2017gameprograming_project\chess\chess\pawn.cpp(54): warning C4101: 'y' :참조되지 않은 지역 변수입니다.
-d:\coding\2017gameprograming_project\chess\chess\pawn.cpp(54): warning C4101: 'x' :참조되지 않은 지역 변수입니다.
-  Chess.vcxproj -> D:\Coding\2017GamePrograming_Project\Chess\Debug\Chess.exe
-  Chess.vcxproj -> D:\Coding\2017GamePrograming_Project\Chess\Debug\Chess.pdb (Full PDB)
+﻿  main.cpp
+d:\2017gameprograming_project\chess\chess\main.cpp(22): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\conio.h(452): note: 'getch' 선언을 참조하십시오.
+  Chess.vcxproj -> D:\2017GamePrograming_Project\Chess\Debug\Chess.exe
+  Chess.vcxproj -> D:\2017GamePrograming_Project\Chess\Debug\Chess.pdb (Full PDB)

@@ -4,22 +4,26 @@
 #include <conio.h>
 gameTool *global = new gameTool();
 void mainMenu(){
-	cout << "                                                 _/                      ";
-	cout << "    _/_/_/  _/_/_/  _/_/      _/_/_/  _/_/_/_/      _/_/_/      _/_/_/   ";
-	cout << " _/    _/  _/    _/    _/  _/    _/      _/    _/  _/    _/  _/    _/    ";
-	cout << "_/    _/  _/    _/    _/  _/    _/    _/      _/  _/    _/  _/    _/     ";
-	cout << " _/_/_/  _/    _/    _/    _/_/_/  _/_/_/_/  _/  _/    _/    _/_/_/      ";
-	cout << "             _/                            _/                   _/       ";
-	cout << "    _/_/_/  _/_/_/      _/_/      _/_/_/  _/  _/      _/_/_//_/          ";
-	cout << " _/        _/    _/  _/_/_/_/  _/        _/_/      _/_/                  ";
-	cout << "_/        _/    _/  _/        _/        _/  _/        _/_/               ";
-	cout << " _/_/_/  _/    _/    _/_/_/    _/_/_/  _/    _/  _/_/_/                  ";
-	cout << "                                        input any key                  ";
+	global->setColor(White, Black);
+	global->setPos(25, 3); cout << "                                                 _/                      ";
+	global->setPos(25, 4);cout << "    _/_/_/  _/_/_/  _/_/      _/_/_/  _/_/_/_/      _/_/_/      _/_/_/   ";
+	global->setPos(25, 5);cout << " _/    _/  _/    _/    _/  _/    _/      _/    _/  _/    _/  _/    _/    ";
+	global->setPos(25, 6);cout << "_/    _/  _/    _/    _/  _/    _/    _/      _/  _/    _/  _/    _/     ";
+	global->setPos(25, 7);cout << " _/_/_/  _/    _/    _/    _/_/_/  _/_/_/_/  _/  _/    _/    _/_/_/      ";
+	global->setPos(25, 8);cout << "             _/                            _/                   _/       ";
+	global->setPos(25, 9);cout << "                                                                         ";
+	global->setPos(25, 10);cout << "                                                                         ";
+	global->setPos(25, 11);cout << "                                                                         ";
+	global->setPos(25, 12);cout << "    _/_/_/  _/_/_/      _/_/      _/_/_/  _/  _/      _/_/_//_/          ";
+	global->setPos(25, 13);cout << " _/        _/    _/  _/_/_/_/  _/        _/_/      _/_/                  ";
+	global->setPos(25, 14);cout << "_/        _/    _/  _/        _/        _/  _/        _/_/               ";
+	global->setPos(25, 15);cout << " _/_/_/  _/    _/    _/_/_/    _/_/_/  _/    _/  _/_/_/                  ";
+	global->setPos(25, 20);cout << "                              input any key                  ";
 	getch();
 }
 int main() {	
+	global->exdrawMap();
 	mainMenu();
-
 	ChessBoard *gameMap = new ChessBoard();
 	Player *whitePlayer = new Player(true, gameMap);
 	Player *blackPlayer = new Player(false, gameMap);
@@ -38,10 +42,18 @@ int main() {
 		blackPlayer->Update(gameMap,whitePlayer);
 		whitePlayer->draw(gameMap);
 	}
-	global->clearUnder();
 	global->setColor(White, Black);
-	global->setPos(20, 20);
-	getch();
+	global->setPos(0, 0);
+	system("cls");
+	for (int i = 0; i < 120; i++) {
+		for (int j = 0; j < 15; j++) {
+			global->setColor(j % 15 + 1, Black);
+			cout << "¢Ã";
+			Sleep(1);
+		}
+	}
+	system("cls");
+	global->setPos(50, 25);
 	if (gameMap->blackCheck())
 		cout << "¹é ½Â¸®!";
 	else

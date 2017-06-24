@@ -26,6 +26,7 @@ enum
 class gameTool
 {
 public:
+	gameTool();
 	void setPos(int x, int y);
 	void setColor(int color, int bgcolor);
 	void drawMap();

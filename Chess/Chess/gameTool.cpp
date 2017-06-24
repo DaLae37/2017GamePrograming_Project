@@ -1,4 +1,7 @@
 #include "gameTool.h"
+gameTool::gameTool() {
+
+}
 void gameTool::drawMap() {
 
 	setPos(30, 7); setColor(DarkGray, Gray); cout << "忙式式成式式成式式成式式成式式成式式成式式成式式忖";
@@ -23,7 +26,7 @@ void gameTool::exdrawMap() {
 
 	for (int i = 0; i < 32; i++){
 		for (int j = 0; j < 120; j++){
-			setPos(j, i); setColor(Gray, White); cout << " ";
+			setPos(j, i); setColor(White, Black); cout << " ";
 		}
 	}
 }

@@ -43,12 +43,12 @@ Player::~Player()
 
 void Player::draw(ChessBoard *gameMap) {
 	for (int i = 0; i < 16; i++) {
-		if (isWhite) {
+		if (isWhite && pc[i] != NULL) {
 			pair<int, int> now = pc[i]->getPos();
 			if(gameMap->isWhiteIn(now.first, now.second))
 				pc[i]->draw();
 		}
-		else {
+		else if(pc[i] != NULL){
 			pair<int, int> now = pc[i]->getPos();
 			if (gameMap->isBlackIn(now.first, now.second))
 				pc[i]->draw();
@@ -62,19 +62,29 @@ void Player::Update(ChessBoard *gameMap, Player *opponenet) {
 	draw(gameMap);
 	int tmp;
 	for (int i = 0; i < 16; i++) {
-		if (pc[i]->isSelected) {
+		if (pc[i]!= NULL && pc[i]->isSelected) {
 			tmp = i;
 			pc[i]->move(gameMap);
 		}
 	}
-	if (!pc[tmp]->isSelectedFinish){
-		global->drawMap();
-		draw(gameMap);
-		opponenet->draw(gameMap);
+	global->drawMap();
+	draw(gameMap);
+	opponenet->draw(gameMap);
+	if (!pc[tmp]->isSelectedFinish) {
 		Update(gameMap, opponenet);
 	}
-		
-
+	for (int k = 0; k < 16; k++) {
+		if (isWhite) {
+			if (opponenet->pc[k]!= NULL && !gameMap->isBlackIn(opponenet->pc[k]->getPos().first, opponenet->pc[k]->getPos().second)) {
+				opponenet->pc[k] = NULL;
+			}
+		}
+		else {
+			if (opponenet->pc[k] != NULL && !gameMap->isWhiteIn(opponenet->pc[k]->getPos().first, opponenet->pc[k]->getPos().second)) {
+				opponenet->pc[k] = NULL;
+			}
+		}
+	}
 }
 bool Player::CanMoveCheck(ChessBoard *map, int x) {
 	for (int i = 0; i < 8; i++) {
@@ -99,12 +109,20 @@ void Player::InputCheck(ChessBoard *map) {
 				int mouse_y = rec.Event.MouseEvent.dwMousePosition.Y; // Y°ª ¹Þ¾Æ¿È
 				COORD Coor = { 0, 0 };
 				DWORD dw;
-				global->setColor(White, Black); global->setPos(0, 0); cout << mouse_x << " " << mouse_y;
+				global->setPos(10, 0); cout << mouse_x << " " << mouse_y;
 				for (int i = 0; i < 16; i++) {
+					if (pc[i] == NULL)
+						continue;
 					pair<int, int> now = pc[i]->getPos();
-					if (now.first == (mouse_x - 32) / 8 && now.second == (mouse_y - 8) / 2 && CanMoveCheck(map, i)) {
-						pc[i]->isSelected = true;
-						return;
+					if (now.first == (mouse_x - 31) / 6 && now.second == (mouse_y - 7) / 2 && CanMoveCheck(map, i)) {
+						if (isWhite && map->isWhiteIn(now.first,now.second)) {
+							pc[i]->isSelected = true;
+							return;
+						}
+						else if (!isWhite && map->isBlackIn(now.first, now.second)) {
+							pc[i]->isSelected = true;
+							return;
+						}
 					}
 				}
 			}

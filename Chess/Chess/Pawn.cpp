@@ -85,8 +85,8 @@ void Pawn::Input(ChessBoard *map) {
 				int mouse_y = rec.Event.MouseEvent.dwMousePosition.Y; // Y°ª ¹Þ¾Æ¿È
 				COORD Coor = { 0, 0 };
 				DWORD dw;
-				x = (mouse_x-32)/8;
-				y = (mouse_y-8)/2;
+				x = (mouse_x-31)/6;
+				y = (mouse_y-7)/2;
 				
 				if (canMove(map, x, y)) {
 					isSelected = false;
@@ -106,7 +106,10 @@ void Pawn::Input(ChessBoard *map) {
 				}
 				if (isSelected)
 					continue;
-				break;
+				else {
+					isSelectedFinish = true;
+					return;
+				}
 			}
 			else if (rec.Event.MouseEvent.dwButtonState & RIGHTMOST_BUTTON_PRESSED){
 				isSelected = false;
