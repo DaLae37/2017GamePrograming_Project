@@ -46,6 +46,62 @@ void gameTool::setPos(int x, int y)
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
 
+void gameTool::whiteTurn() {
+	setColor(White, Black); setPos(15, 8); cout << "@   @  @ @";
+	setPos(15,9); cout<<"@   @  @ @";
+	setPos(15,10); cout<<"@@@@@  @ @";
+	setPos(15,11); cout<<"@   @  @@@";
+	setPos(15,12); cout<<"@   @  @ @";
+	setPos(15,13); cout<<"@@@@@  @ @";
+	setPos(15,14); cout<<"       @ @";
+	setPos(15,15); cout<<"  ========";
+	setPos(15,16); cout<<"         @";
+	setPos(15,17); cout<<"         @";
+	setPos(15,18); cout<<"         @";
+	setPos(15,19); cout<<"         @";
+	setPos(85, 8); cout << "               ";
+	setPos(85, 9); cout << "               ";
+	setPos(85, 10); cout << "               ";
+	setPos(85, 11); cout << "               ";
+	setPos(85, 12); cout << "               ";
+	setPos(85, 13); cout << "               ";
+	setPos(85, 14); cout << "               ";
+	setPos(85, 15); cout << "               ";
+	setPos(85, 16); cout << "               ";
+	setPos(85, 17); cout << "               ";
+	setPos(85, 18); cout << "               ";
+	setPos(85, 19); cout << "               ";
+	setPos(85, 20); cout << "               ";
+}
+
+void gameTool::blackTurn() {
+	setColor(White, Black); setPos(15, 8); cout << "              ";
+	setPos(15, 9); cout << "               ";
+	setPos(15, 10); cout << "               ";
+	setPos(15, 11); cout << "               ";
+	setPos(15, 12); cout << "               ";
+	setPos(15, 13); cout << "               ";
+	setPos(15, 14); cout << "               ";
+	setPos(15, 15); cout << "               ";
+	setPos(15, 16); cout << "               ";
+	setPos(15, 17); cout << "               ";
+	setPos(15, 18); cout << "               ";
+	setPos(15, 19); cout << "               ";
+	setColor(Black, White);
+	setPos(85,8); cout<<"     -      ";
+	setPos(85,9); cout<<"     :.     ";
+	setPos(85,10); cout<<" ********** ";
+	setPos(85,11); cout<<"  .@@@@@@   ";
+	setPos(85,12); cout<<"  @      @  ";
+	setPos(85,13); cout<<"  @     ,@  ";
+	setPos(85,14); cout<<"   ;@@@@~   ";
+	setPos(85,15); cout<<";;;;;;;;;;;;";
+	setPos(85,16); cout<<"            ";
+	setPos(85,17); cout<<" ,@@@@@@@@  ";
+	setPos(85,18); cout<<"         @  ";
+	setPos(85,19); cout<<"         @  ";
+	setPos(85,20); cout<<"         @  ";
+}
 void gameTool::setColor(int color, int bgcolor)
 {
 	color &= 0xf;

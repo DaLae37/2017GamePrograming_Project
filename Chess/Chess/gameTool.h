@@ -29,6 +29,8 @@ public:
 	gameTool();
 	void setPos(int x, int y);
 	void setColor(int color, int bgcolor);
+	void whiteTurn();
+	void blackTurn();
 	void drawMap();
 	void exdrawMap();
 	void clearUnder();

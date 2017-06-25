@@ -38,10 +38,12 @@ int main() {
 	blackPlayer->draw(gameMap);
 
 	while (!gameMap->whiteCheck()) {
+		global->whiteTurn();
 		whitePlayer->Update(gameMap,blackPlayer);
 		blackPlayer->draw(gameMap);
 		if (gameMap->blackCheck())
 			break;
+		global->blackTurn();
 		blackPlayer->Update(gameMap,whitePlayer);
 		whitePlayer->draw(gameMap);
 	}
@@ -61,6 +63,7 @@ int main() {
 		cout << "¹é ½Â¸®!";
 	else
 		cout << "Èæ ½Â¸®!";
+	getch();
 	delete(global);
 	return 0;
 }

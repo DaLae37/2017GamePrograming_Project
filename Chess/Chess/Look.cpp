@@ -74,6 +74,7 @@ void Look::move(ChessBoard *map) {
 		for (int j = 0; j < 8; j++) {
 			if (canMove(map, j, i)) {
 				global->setPos((j) * 6 + 32, (i) * 2 + 8);
+				global->setColor(Black, Gray);
 				cout << "####";
 			}
 		}
