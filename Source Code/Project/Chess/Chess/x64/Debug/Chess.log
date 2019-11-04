@@ -1,0 +1,41 @@
+﻿  Bishop.cpp
+D:\Project\VisualStudio\AmazingChecks\Chess\Chess\Bishop.cpp(69,9): warning C4101: 'y' :참조되지 않은 지역 변수입니다.
+D:\Project\VisualStudio\AmazingChecks\Chess\Chess\Bishop.cpp(69,6): warning C4101: 'x' :참조되지 않은 지역 변수입니다.
+  ChessBoard.cpp
+  gameTool.cpp
+D:\Project\VisualStudio\AmazingChecks\Chess\Chess\Bishop.cpp(95,11): warning C4101: 'dw' :참조되지 않은 지역 변수입니다.
+D:\Project\VisualStudio\AmazingChecks\Chess\Chess\gameTool.cpp(45,16): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
+  King.cpp
+D:\Project\VisualStudio\AmazingChecks\Chess\Chess\gameTool.cpp(45,19): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
+D:\Project\VisualStudio\AmazingChecks\Chess\Chess\King.cpp(75,9): warning C4101: 'y' :참조되지 않은 지역 변수입니다.
+D:\Project\VisualStudio\AmazingChecks\Chess\Chess\King.cpp(75,6): warning C4101: 'x' :참조되지 않은 지역 변수입니다.
+  Knight.cpp
+D:\Project\VisualStudio\AmazingChecks\Chess\Chess\King.cpp(101,11): warning C4101: 'dw' :참조되지 않은 지역 변수입니다.
+D:\Project\VisualStudio\AmazingChecks\Chess\Chess\Knight.cpp(61,9): warning C4101: 'y' :참조되지 않은 지역 변수입니다.
+D:\Project\VisualStudio\AmazingChecks\Chess\Chess\Knight.cpp(61,6): warning C4101: 'x' :참조되지 않은 지역 변수입니다.
+  Look.cpp
+D:\Project\VisualStudio\AmazingChecks\Chess\Chess\Knight.cpp(90,11): warning C4101: 'dw' :참조되지 않은 지역 변수입니다.
+D:\Project\VisualStudio\AmazingChecks\Chess\Chess\Look.cpp(69,9): warning C4101: 'y' :참조되지 않은 지역 변수입니다.
+D:\Project\VisualStudio\AmazingChecks\Chess\Chess\Look.cpp(69,6): warning C4101: 'x' :참조되지 않은 지역 변수입니다.
+  main.cpp
+D:\Project\VisualStudio\AmazingChecks\Chess\Chess\Look.cpp(99,11): warning C4101: 'dw' :참조되지 않은 지역 변수입니다.
+D:\Project\VisualStudio\AmazingChecks\Chess\Chess\main.cpp(24,1): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\ucrt\conio.h(453): message : 'getch' 선언을 참조하십시오.
+D:\Project\VisualStudio\AmazingChecks\Chess\Chess\main.cpp(66,1): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
+  Mouse.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\ucrt\conio.h(453): message : 'getch' 선언을 참조하십시오.
+  Pawn.cpp
+D:\Project\VisualStudio\AmazingChecks\Chess\Chess\Mouse.cpp(23,9): warning C4101: 'dw' :참조되지 않은 지역 변수입니다.
+D:\Project\VisualStudio\AmazingChecks\Chess\Chess\Pawn.cpp(61,9): warning C4101: 'y' :참조되지 않은 지역 변수입니다.
+D:\Project\VisualStudio\AmazingChecks\Chess\Chess\Pawn.cpp(61,6): warning C4101: 'x' :참조되지 않은 지역 변수입니다.
+  Pieces.cpp
+  Player.cpp
+D:\Project\VisualStudio\AmazingChecks\Chess\Chess\Pawn.cpp(87,11): warning C4101: 'dw' :참조되지 않은 지역 변수입니다.
+  Queen.cpp
+D:\Project\VisualStudio\AmazingChecks\Chess\Chess\Player.cpp(111,11): warning C4101: 'dw' :참조되지 않은 지역 변수입니다.
+D:\Project\VisualStudio\AmazingChecks\Chess\Chess\Queen.cpp(102,9): warning C4101: 'y' :참조되지 않은 지역 변수입니다.
+D:\Project\VisualStudio\AmazingChecks\Chess\Chess\Queen.cpp(102,6): warning C4101: 'x' :참조되지 않은 지역 변수입니다.
+  코드를 생성하고 있습니다...
+D:\Project\VisualStudio\AmazingChecks\Chess\Chess\Queen.cpp(131,11): warning C4101: 'dw' :참조되지 않은 지역 변수입니다.
+D:\Project\VisualStudio\AmazingChecks\Chess\Chess\Mouse.cpp(27): warning C4715: 'Mouse::CheckMouse': 모든 제어 경로에서 값을 반환하지는 않습니다.
+  Chess.vcxproj -> D:\Project\VisualStudio\AmazingChecks\Chess\x64\Debug\Chess.exe
