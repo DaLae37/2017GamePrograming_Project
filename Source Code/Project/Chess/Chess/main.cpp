@@ -3,7 +3,7 @@
 #include "ChessBoard.h"
 #include <conio.h>
 #include<MMSystem.h> // 배경음악 때문에 사용
-#pragma comment(lib,"Winmm.lib") // 배경음악
+#pragma comment(lib,"winmm.lib") // 배경음악
 gameTool *global = new gameTool();
 void mainMenu(){
 	global->setColor(White, Black);
