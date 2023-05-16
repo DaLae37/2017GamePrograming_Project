@@ -13,6 +13,6 @@
 
 [유튜브](https://youtu.be/LdOO4mi9PCE)
 
-[플레이 방법]()
+[플레이 방법](https://github.com/DaLae37/AmazingChecks_CPP/releases/download/v1.0/HowToPlay.pdf)
 
-[보고서]()
+[보고서](https://github.com/DaLae37/AmazingChecks_CPP/releases/download/v1.0/Report.pdf)
